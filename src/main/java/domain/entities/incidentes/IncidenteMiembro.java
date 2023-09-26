@@ -6,6 +6,7 @@ import domain.entities.servicios.Establecimiento;
 import domain.entities.servicios.Servicio;
 
 import javax.persistence.*;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -38,5 +39,14 @@ public class IncidenteMiembro extends Incidente{
     @Override
     public void notificar() {
 
+    }
+
+    public Duration obtenerDiferencia(){
+        Duration duracion = Duration.between(this.getFechaCierre(), this.getFechaRealizacion());
+        return duracion;
+    }
+
+    public Boolean esParecido(IncidenteMiembro i){
+        return this.getServicio().equals(i.getServicio()) && this.getEstablecimiento().equals(i.getEstablecimiento());
     }
 }

@@ -1,4 +1,4 @@
-package domain.calculadorGradosConfianza;
+package domain.calculadorGradosConfianza.gradosConfianza;
 
 import domain.entities.actores.miembros.Miembro;
 

@@ -1,15 +1,12 @@
 package domain.entities.actores.miembros;
 
 
-import domain.calculadorGradosConfianza.GradoConfianza;
+import domain.calculadorGradosConfianza.gradosConfianza.GradoConfianza;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.transaction.TransactionScoped;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "Miembros")
@@ -51,5 +48,8 @@ public class Miembro {
 
     }
 
+    public void actualizarPuntaje(double puntaje){
+        gradoConfianza.actualizar(this,puntaje);
+    }
 
 }
