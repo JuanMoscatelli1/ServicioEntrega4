@@ -1,5 +1,6 @@
 package domain.entities.actores.miembros;
 
+import domain.calculadorGradosConfianza.gradosConfianza.GradoConfianza;
 import domain.entities.actores.Comunidad;
 import domain.entities.actores.miembros.Miembro;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
+@Getter
 public class MiembroPorComunidad {
 
     @Id
@@ -39,9 +41,13 @@ public class MiembroPorComunidad {
     public MiembroPorComunidad() {
 
     }
-/* public Boolean esAfectado(){
+     public Double obtenerPuntaje(){
+        return this.getMiembro().getGradoConfianza().getPuntaje();
+     }
 
-    }
+     public Boolean esGrado(GradoConfianza grado){
+        return this.getMiembro().getGradoConfianza().getClass().equals(grado.getClass());
+     }
 
-    */
+
 }

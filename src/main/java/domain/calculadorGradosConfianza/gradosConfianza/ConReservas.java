@@ -6,6 +6,7 @@ public class ConReservas extends GradoConfianza{
     public ConReservas(Double puntajeNuevo) {
         super(puntajeNuevo);
     }
+    public ConReservas(){}
 
     @Override
     public void verificar(Miembro miembro, double puntaje) {

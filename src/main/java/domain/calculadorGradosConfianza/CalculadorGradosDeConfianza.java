@@ -1,5 +1,6 @@
 package domain.calculadorGradosConfianza;
 
+import domain.entities.actores.Comunidad;
 import domain.entities.actores.miembros.Miembro;
 import domain.entities.incidentes.IncidenteMiembro;
 
@@ -18,7 +19,17 @@ public class CalculadorGradosDeConfianza {
 
     public void execute(){
         List<Miembro> miembros = obtenerMiembros();
-        miembros.forEach(m->calcularPuntaje(m));
+        List<Comunidad> comunidades = obtenerComunidades();
+        miembros.forEach(this::calcularPuntaje);
+        comunidades.forEach(this::calcularPuntajeComunidad);
+    }
+
+    private void calcularPuntajeComunidad(Comunidad comunidad) {
+        comunidad.totalPuntaje();
+    }
+
+    private List<Comunidad> obtenerComunidades() {
+        return null;
     }
 
     private void calcularPuntaje(Miembro m) {
