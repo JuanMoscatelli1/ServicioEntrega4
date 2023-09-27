@@ -1,6 +1,6 @@
 package domain.entities.servicios;
 
-
+import domain.entities.services.georef.entities.Localizacion;
 import lombok.Getter;
 import lombok.Setter;
 

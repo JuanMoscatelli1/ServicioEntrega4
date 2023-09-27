@@ -1,6 +1,6 @@
 package domain.entities.servicios;
 
-
+import domain.entities.services.georef.entities.Localizacion;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -19,6 +19,9 @@ public class Establecimiento {
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "tipoDeEstablecimiento_codigo", referencedColumnName = "tipoDeEstablecimiento_codigo")
     private TipoDeEstablecimiento tipoDeEstablecimiento;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "localizacion_codigo", referencedColumnName = "localizacion_codigo")
+    private Localizacion localizacion;
 
 
     @Getter

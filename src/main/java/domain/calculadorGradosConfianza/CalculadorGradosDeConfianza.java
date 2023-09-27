@@ -3,6 +3,7 @@ package domain.calculadorGradosConfianza;
 import domain.entities.actores.Comunidad;
 import domain.entities.actores.miembros.Miembro;
 import domain.entities.incidentes.IncidenteMiembro;
+import domain.repositorios.RepoGeneral;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -57,15 +58,15 @@ public class CalculadorGradosDeConfianza {
 
 
     private List<IncidenteMiembro> obtenerIncidentesCerradosMiembro(Miembro m) {
-        return null;
+        return  RepoGeneral.getInstance().buscarIncidentesCerrados();
     }
 
     private List<IncidenteMiembro> obtenerIncidentesAbiertosMiembro(Miembro m) {
-        return null;
+        return RepoGeneral.getInstance().buscarIncidentesAbiertos();
     }
 
     private List<Miembro> obtenerMiembros() {
-        return null;
+        return RepoGeneral.getInstance().buscarMiembros();
     }
 
 }

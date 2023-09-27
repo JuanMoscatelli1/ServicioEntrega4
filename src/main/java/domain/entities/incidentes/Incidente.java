@@ -12,12 +12,12 @@ import java.util.Date;
 import java.util.List;
 @Getter
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table
 public abstract class Incidente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int incidente_codigo;
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "establecimiento_codigo", referencedColumnName = "establecimiento_codigo")

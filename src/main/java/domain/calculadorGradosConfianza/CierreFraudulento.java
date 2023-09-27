@@ -2,6 +2,7 @@ package domain.calculadorGradosConfianza;
 
 import domain.entities.actores.miembros.Miembro;
 import domain.entities.incidentes.IncidenteMiembro;
+import domain.repositorios.RepoGeneral;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -24,7 +25,7 @@ public class CierreFraudulento extends VerificacionIncidente{
     }
 
     private List<IncidenteMiembro> obtenerIncidentesCerrados() {
-        return null;
+        return RepoGeneral.getInstance().buscarIncidentesCerrados();
     }
 
 
