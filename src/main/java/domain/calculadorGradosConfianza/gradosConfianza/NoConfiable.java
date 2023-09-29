@@ -2,10 +2,17 @@ package domain.calculadorGradosConfianza.gradosConfianza;
 
 import domain.entities.actores.miembros.Miembro;
 
+import javax.persistence.Entity;
+
+@Entity
 public class NoConfiable extends GradoConfianza{
 
     public NoConfiable(Double puntajeNuevo) {
         super(puntajeNuevo);
+    }
+
+    public NoConfiable() {
+
     }
 
     @Override

@@ -2,6 +2,9 @@ package domain.calculadorGradosConfianza.gradosConfianza;
 
 import domain.entities.actores.miembros.Miembro;
 
+import javax.persistence.Entity;
+
+@Entity
 public class ConReservas extends GradoConfianza{
     public ConReservas(Double puntajeNuevo) {
         super(puntajeNuevo);
