@@ -1,6 +1,7 @@
 package domain.entities.actores.miembros;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import domain.calculadorGradosConfianza.gradosConfianza.GradoConfianza;
 import domain.entities.actores.Usuario;
 import domain.entities.notificaciones.HorarioNotificacion;
@@ -37,6 +38,7 @@ public class Miembro {
     @Column
     private String telefono;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "miembro", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     private List<MiembroPorComunidad> comunidades;
 
@@ -60,7 +62,7 @@ public class Miembro {
     private List<HorarioNotificacion> horarios;
 
 
-    @OneToOne(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinColumn(name = "gradoConfianza_codigo", referencedColumnName = "gradoConfianza_codigo")
     private GradoConfianza gradoConfianza;
 
