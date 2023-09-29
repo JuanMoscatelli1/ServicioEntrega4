@@ -10,6 +10,11 @@ public class HorarioNotificacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int horario_codigo;
+
+    public LocalDateTime getHorario() {
+        return horario;
+    }
+
     @Column
     private LocalDateTime horario;
 

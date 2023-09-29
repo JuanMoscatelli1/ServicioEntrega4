@@ -32,6 +32,54 @@ public class Miembro {
     @Column
     private String apellido;
 
+    public int getMiembro_codigo() {
+        return miembro_codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public List<MiembroPorComunidad> getComunidades() {
+        return comunidades;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public List<Entidad> getEntidadesDeInteres() {
+        return entidadesDeInteres;
+    }
+
+    public Localizacion getLocalizacion() {
+        return localizacion;
+    }
+
+    public MedioNotificacion getMedioNotificacion() {
+        return medioNotificacion;
+    }
+
+    public List<HorarioNotificacion> getHorarios() {
+        return horarios;
+    }
+
+    public GradoConfianza getGradoConfianza() {
+        return gradoConfianza;
+    }
+
     @Column
     private String email;
 
@@ -61,6 +109,10 @@ public class Miembro {
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     private List<HorarioNotificacion> horarios;
 
+
+    public void setGradoConfianza(GradoConfianza gradoConfianza) {
+        this.gradoConfianza = gradoConfianza;
+    }
 
     @OneToOne(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinColumn(name = "gradoConfianza_codigo", referencedColumnName = "gradoConfianza_codigo")

@@ -20,6 +20,23 @@ public class Comunidad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int comunidad_codigo;
 
+
+    public List<MiembroPorComunidad> getMiembros() {
+        return miembros;
+    }
+
+    public String getObjetivo() {
+        return objetivo;
+    }
+
+    public List<Incidente> getIncidentes() {
+        return incidentes;
+    }
+
+    public Double getPuntaje() {
+        return puntaje;
+    }
+
     @OneToMany(mappedBy = "comunidad", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     @Getter
     private List<MiembroPorComunidad> miembros;
@@ -28,6 +45,10 @@ public class Comunidad {
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     @JoinColumn(name = "comunidad_codigo", referencedColumnName = "comunidad_codigo")
     private List<Incidente> incidentes;
+
+    public void setPuntaje(Double puntaje) {
+        this.puntaje = puntaje;
+    }
 
     @Column
     private Double puntaje;

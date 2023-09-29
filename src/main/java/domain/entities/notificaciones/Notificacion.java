@@ -11,6 +11,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Notificacion {
+    public Incidente getIncidente() {
+        return incidente;
+    }
+
+    public List<Miembro> getMiembros() {
+        return miembros;
+    }
+
     @Getter
     private Incidente incidente;
     private List<Miembro> miembros;

@@ -9,10 +9,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class GetMiembroHandler implements Handler {
     @OpenApi(
+            summary = "Obtener los miembros Actualizados",
             path = "/api/miembros",
             methods = {HttpMethod.GET},
+            tags = {"Miembros"},
             responses = {
-                    @OpenApiResponse(status = "200", content = @OpenApiContent(from = Miembro.class)),
+                    @OpenApiResponse(status = "200", content = @OpenApiContent(from = Miembro[].class)),
                     @OpenApiResponse(status = "404" )
             }
     )

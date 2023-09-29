@@ -15,6 +15,10 @@ public abstract class GradoConfianza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int gradoConfianza_codigo;
 
+    public double getPuntaje() {
+        return puntaje;
+    }
+
     private double puntaje;
 
     public GradoConfianza(Double puntajeNuevo){

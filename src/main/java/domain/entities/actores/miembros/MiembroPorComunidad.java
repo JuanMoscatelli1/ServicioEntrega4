@@ -16,6 +16,26 @@ public class MiembroPorComunidad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int miembroPorComunidad_codigo;
 
+    public int getMiembroPorComunidad_codigo() {
+        return miembroPorComunidad_codigo;
+    }
+
+    public Miembro getMiembro() {
+        return miembro;
+    }
+
+    public Comunidad getComunidad() {
+        return comunidad;
+    }
+
+    public TipoDeMiembro getTipoDeMiembro() {
+        return tipoDeMiembro;
+    }
+
+    public Boolean getEsAdmin() {
+        return esAdmin;
+    }
+
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "miembro_codigo", referencedColumnName = "miembro_codigo")
     @Getter

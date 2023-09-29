@@ -27,6 +27,35 @@ public abstract class Incidente {
     private Servicio servicio;
     @Column
     private String descripcion;
+
+    public int getIncidente_codigo() {
+        return incidente_codigo;
+    }
+
+    public Establecimiento getEstablecimiento() {
+        return establecimiento;
+    }
+
+    public Servicio getServicio() {
+        return servicio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public Boolean getResuelto() {
+        return resuelto;
+    }
+
+    public LocalDateTime getFechaRealizacion() {
+        return fechaRealizacion;
+    }
+
+    public LocalDateTime getFechaCierre() {
+        return fechaCierre;
+    }
+
     @Column
     private Boolean resuelto;
     @Column
