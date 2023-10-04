@@ -24,7 +24,7 @@ public class calculadorTest extends AbstractPersistenceTest implements WithGloba
 
     @Test
     public void obtenerIncidentes(){
-        List<IncidenteMiembro> incidentes = RepoGeneral.getInstance().buscarIncidentesCerrados();
+        List<IncidenteMiembro> incidentes = RepoGeneral.getInstance().buscarIncidentesAbiertos();
         IncidenteMiembro incidenteMiembro1 = incidentes.stream().findFirst().get();
         Assert.assertEquals(1,incidenteMiembro1.getIncidente_codigo());
     }

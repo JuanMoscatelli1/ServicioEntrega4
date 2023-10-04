@@ -1,22 +1,22 @@
 package domain.repositorios;
 
+import domain.entities.actores.Comunidad;
 import domain.entities.actores.miembros.Miembro;
 import domain.entities.incidentes.IncidenteMiembro;
-import domain.entities.servicios.Organizacion;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
+
+//TODO: crear otros repos para cada clase
 public class RepoGeneral {
-    private List<Miembro> miembros;
 
     private static RepoGeneral instance;
 
     private RepoGeneral() {
-        this.miembros = new ArrayList<>();
+
     }
 
     public static RepoGeneral getInstance() {
@@ -48,13 +48,33 @@ public class RepoGeneral {
         return em.createQuery("select i from IncidenteMiembro i", IncidenteMiembro.class).getResultList();
     }
 
-    /*public Organizacion buscar(String nombre){
-        Optional<Organizacion> organizacionEncontrada = organizaciones.stream()
-                .filter(org -> org.getNombre().equals(nombre)).findFirst();
-        if (organizacionEncontrada.isPresent()){
-            return organizacionEncontrada.get();
-        }else return null;
-    }*/
+    public List<Comunidad> buscarComunidades() {
+        EntityManager em = utils.BDUtils.getEntityManager();
+        List<Comunidad> comunidades = em.createQuery("select c from Comunidad c", Comunidad.class)
+                .getResultList();;
+        return comunidades;
+    }
 
-    //public void agregar(Organizacion org){this.organizaciones.add(org);}
+    public void persistirMiembros(List<Miembro> miembros) {
+        EntityManager em = utils.BDUtils.getEntityManager();
+        utils.BDUtils.comenzarTransaccion(em);
+
+        for (Miembro miembro : miembros){
+            em.persist(miembro);
+        }
+
+        utils.BDUtils.commit(em);
+    }
+
+    public void persistirComunidades(List<Comunidad> comunidades) {
+        EntityManager em = utils.BDUtils.getEntityManager();
+        utils.BDUtils.comenzarTransaccion(em);
+
+        for (Comunidad comunidad : comunidades){
+            em.persist(comunidad);
+        }
+
+        utils.BDUtils.commit(em);
+    }
+
 }

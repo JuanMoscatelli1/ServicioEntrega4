@@ -23,6 +23,8 @@ public class CalculadorGradosDeConfianza {
         List<Comunidad> comunidades = obtenerComunidades();
         miembros.forEach(this::calcularPuntaje);
         comunidades.forEach(this::calcularPuntajeComunidad);
+        RepoGeneral.getInstance().persistirMiembros(miembros);
+        RepoGeneral.getInstance().persistirComunidades(comunidades);
     }
 
     private void calcularPuntajeComunidad(Comunidad comunidad) {
@@ -30,7 +32,7 @@ public class CalculadorGradosDeConfianza {
     }
 
     private List<Comunidad> obtenerComunidades() {
-        return null;
+        return RepoGeneral.getInstance().buscarComunidades();
     }
 
     private void calcularPuntaje(Miembro m) {
