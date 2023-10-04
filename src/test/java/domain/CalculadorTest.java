@@ -12,7 +12,7 @@ import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import java.util.List;
 
-public class calculadorTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
+public class CalculadorTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
     @Test
     public void obtenerMiembros(){
