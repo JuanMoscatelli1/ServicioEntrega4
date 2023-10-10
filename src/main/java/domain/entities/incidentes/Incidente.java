@@ -4,6 +4,7 @@ import domain.entities.actores.miembros.Miembro;
 import domain.entities.servicios.Establecimiento;
 import domain.entities.servicios.Servicio;
 import lombok.Getter;
+import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,6 +29,10 @@ public abstract class Incidente {
     @Column
     private String descripcion;
 
+    public void setFechaCierre(LocalDateTime fecha) {
+        fechaCierre = fecha;
+        resuelto = true;
+    }
     public int getIncidente_codigo() {
         return incidente_codigo;
     }

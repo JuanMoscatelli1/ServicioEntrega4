@@ -17,7 +17,7 @@ public class ConfiableNivel2 extends GradoConfianza{
 
     @Override
     public void verificar(Miembro miembro, double puntaje) {
-        if (puntaje < 5){
+        if (puntaje <= 5){
             miembro.setGradoConfianza(new ConfiableNivel1(puntaje));
         }
     }

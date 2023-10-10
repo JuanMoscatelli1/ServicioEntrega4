@@ -36,6 +36,8 @@ public class MiembroPorComunidad {
         return esAdmin;
     }
 
+
+
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "miembro_codigo", referencedColumnName = "miembro_codigo")
     @Getter

@@ -2,6 +2,7 @@ package domain.entities.actores.miembros;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import domain.calculadorGradosConfianza.gradosConfianza.ConfiableNivel1;
 import domain.calculadorGradosConfianza.gradosConfianza.GradoConfianza;
 import domain.entities.actores.Usuario;
 import domain.entities.notificaciones.HorarioNotificacion;
@@ -14,6 +15,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -130,6 +132,8 @@ public class Miembro {
         this.apellido = apellido;
         this.email = email;
         this.telefono = telefono;
+        this.comunidades = new ArrayList<>();
+        this.gradoConfianza = new ConfiableNivel1(5.0);
     }
 
     public Miembro() {
@@ -148,4 +152,7 @@ public class Miembro {
         this.getMedioNotificacion().notificar(notificacion,this);
     }
 
+    public void agregarMiembroPorComunidad(MiembroPorComunidad miembroPorComunidad1) {
+        comunidades.add(miembroPorComunidad1);
+    }
 }

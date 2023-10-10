@@ -2,6 +2,7 @@ package domain.repositorios;
 
 import domain.entities.actores.Comunidad;
 import domain.entities.actores.miembros.Miembro;
+import domain.entities.actores.miembros.MiembroPorComunidad;
 import domain.entities.incidentes.IncidenteMiembro;
 
 import javax.persistence.EntityManager;
@@ -33,20 +34,33 @@ public class RepoGeneral {
         return miembros;
     }
 
-    public List<IncidenteMiembro> buscarIncidentesCerrados() {
-        List<IncidenteMiembro> incidentes = buscarIncidentes();
+    public List<IncidenteMiembro> buscarIncidentesCerrados(MiembroPorComunidad miembro) {
+        List<IncidenteMiembro> incidentes = buscarIncidentesMiembro(miembro);
         return incidentes.stream().filter(i->i.getResuelto().equals(true)).collect(Collectors.toList());
     }
 
-    public List<IncidenteMiembro> buscarIncidentesAbiertos() {
-        List<IncidenteMiembro> incidentes = buscarIncidentes();
+    public List<IncidenteMiembro> buscarIncidentesCerrados() {
+        List<IncidenteMiembro> incidentes = buscarIncidentesMiembroTotal();
+        return incidentes.stream().filter(i->i.getResuelto().equals(true)).collect(Collectors.toList());
+    }
+
+    private List<IncidenteMiembro> buscarIncidentesMiembroTotal() {
+        EntityManager em = utils.BDUtils.getEntityManager();
+        return em.createQuery("select i from IncidenteMiembro i", IncidenteMiembro.class).
+                getResultList();
+    }
+    private List<IncidenteMiembro> buscarIncidentesMiembro(MiembroPorComunidad miembro) {
+        EntityManager em = utils.BDUtils.getEntityManager();
+        return em.createQuery("select i from IncidenteMiembro i where i.miembro = ?1", IncidenteMiembro.class)
+                .setParameter(1, miembro).getResultList();
+    }
+
+    public List<IncidenteMiembro> buscarIncidentesAbiertos(MiembroPorComunidad miembroPorComunidad) {
+        List<IncidenteMiembro> incidentes = buscarIncidentesMiembro(miembroPorComunidad);
         return incidentes.stream().filter(i->i.getResuelto().equals(false)).collect(Collectors.toList());
     }
 
-    public List<IncidenteMiembro> buscarIncidentes(){
-        EntityManager em = utils.BDUtils.getEntityManager();
-        return em.createQuery("select i from IncidenteMiembro i", IncidenteMiembro.class).getResultList();
-    }
+
 
     public List<Comunidad> buscarComunidades() {
         EntityManager em = utils.BDUtils.getEntityManager();
@@ -55,12 +69,16 @@ public class RepoGeneral {
         return comunidades;
     }
 
+
+    //persistir
+
     public void persistirMiembros(List<Miembro> miembros) {
         EntityManager em = utils.BDUtils.getEntityManager();
         utils.BDUtils.comenzarTransaccion(em);
 
         for (Miembro miembro : miembros){
-            em.persist(miembro);
+            em.merge(miembro.getGradoConfianza());
+            em.merge(miembro);
         }
 
         utils.BDUtils.commit(em);
@@ -71,7 +89,7 @@ public class RepoGeneral {
         utils.BDUtils.comenzarTransaccion(em);
 
         for (Comunidad comunidad : comunidades){
-            em.persist(comunidad);
+            em.merge(comunidad);
         }
 
         utils.BDUtils.commit(em);

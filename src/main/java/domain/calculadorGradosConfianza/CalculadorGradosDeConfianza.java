@@ -2,9 +2,11 @@ package domain.calculadorGradosConfianza;
 
 import domain.entities.actores.Comunidad;
 import domain.entities.actores.miembros.Miembro;
+import domain.entities.actores.miembros.MiembroPorComunidad;
 import domain.entities.incidentes.IncidenteMiembro;
 import domain.repositorios.RepoGeneral;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -14,6 +16,7 @@ public class CalculadorGradosDeConfianza {
     double incrementoPorIncidente = 0.5;
 
     public CalculadorGradosDeConfianza(){
+        verificadores = new ArrayList<>();
         this.verificadores.add(new AperturaFraudulenta());
         this.verificadores.add(new CierreFraudulento());
     }
@@ -36,35 +39,36 @@ public class CalculadorGradosDeConfianza {
     }
 
     private void calcularPuntaje(Miembro m) {
+        for (MiembroPorComunidad miembroPorComunidad : m.getComunidades()){
+            List<IncidenteMiembro> incidentesMiembro = obtenerIncidentesCerradosMiembro(miembroPorComunidad);
 
-        List<IncidenteMiembro> incidentesMiembro = obtenerIncidentesCerradosMiembro(m);
+            incidentesMiembro.forEach(i->calcularPuntajeIncidente(i,miembroPorComunidad));
 
-        incidentesMiembro.forEach(i->calcularPuntajeIncidente(i,m));
-
-        List<IncidenteMiembro> incidentesAbiertos = obtenerIncidentesAbiertosMiembro(m);
-        if(!incidentesAbiertos.isEmpty()) {
-            m.actualizarPuntaje(incidentesAbiertos.size() * incrementoPorIncidente);
+            List<IncidenteMiembro> incidentesAbiertos = obtenerIncidentesAbiertosMiembro(miembroPorComunidad);
+            if(!incidentesAbiertos.isEmpty()) {
+                m.actualizarPuntaje(incidentesAbiertos.size() * incrementoPorIncidente);
+            }
         }
+
     }
 
-    private void calcularPuntajeIncidente(IncidenteMiembro i, Miembro m) {
+    private void calcularPuntajeIncidente(IncidenteMiembro i, MiembroPorComunidad m) {
         AtomicBoolean resultado = new AtomicBoolean(true);
         for (VerificacionIncidente verificador : verificadores){
-            verificador.verificar(i,m,resultado);
+            verificador.verificar(i,m.getMiembro(),resultado);
 
-            boolean resultadoBool = resultado.get();
-            if(resultadoBool) m.actualizarPuntaje(incrementoPorIncidente);
         }
-
+        boolean resultadoBool = resultado.get();
+        if(resultadoBool) m.getMiembro().actualizarPuntaje(incrementoPorIncidente);
     }
 
 
-    private List<IncidenteMiembro> obtenerIncidentesCerradosMiembro(Miembro m) {
-        return  RepoGeneral.getInstance().buscarIncidentesCerrados();
+    private List<IncidenteMiembro> obtenerIncidentesCerradosMiembro(MiembroPorComunidad m) {
+        return  RepoGeneral.getInstance().buscarIncidentesCerrados(m);
     }
 
-    private List<IncidenteMiembro> obtenerIncidentesAbiertosMiembro(Miembro m) {
-        return RepoGeneral.getInstance().buscarIncidentesAbiertos();
+    private List<IncidenteMiembro> obtenerIncidentesAbiertosMiembro(MiembroPorComunidad m) {
+        return RepoGeneral.getInstance().buscarIncidentesAbiertos(m);
     }
 
     private List<Miembro> obtenerMiembros() {
