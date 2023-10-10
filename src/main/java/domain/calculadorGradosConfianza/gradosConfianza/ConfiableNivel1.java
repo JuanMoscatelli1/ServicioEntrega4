@@ -8,10 +8,10 @@ import javax.persistence.Entity;
 public class ConfiableNivel1 extends GradoConfianza{
     public ConfiableNivel1(Double puntajeNuevo) {
         super(puntajeNuevo);
+        this.gradoConfianza="ConfiableNivel1";
     }
 
     public ConfiableNivel1() {
-
     }
 
     @Override

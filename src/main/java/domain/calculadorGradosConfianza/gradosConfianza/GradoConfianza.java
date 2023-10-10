@@ -21,6 +21,12 @@ public abstract class GradoConfianza {
 
     private double puntaje;
 
+    protected String gradoConfianza;
+
+    public String getGradoConfianza() {
+        return gradoConfianza;
+    }
+
     public GradoConfianza(Double puntajeNuevo){
         this.puntaje = puntajeNuevo;
     }

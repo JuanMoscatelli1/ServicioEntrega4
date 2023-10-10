@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 public class ConReservas extends GradoConfianza{
     public ConReservas(Double puntajeNuevo) {
         super(puntajeNuevo);
+        this.gradoConfianza="ConReservas";
     }
     public ConReservas(){}
 

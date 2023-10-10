@@ -9,6 +9,7 @@ public class NoConfiable extends GradoConfianza{
 
     public NoConfiable(Double puntajeNuevo) {
         super(puntajeNuevo);
+        this.gradoConfianza="NoConfiable";
     }
 
     public NoConfiable() {
