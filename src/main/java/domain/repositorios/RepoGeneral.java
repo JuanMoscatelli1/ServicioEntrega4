@@ -28,6 +28,8 @@ public class RepoGeneral {
         return instance;
     }
 
+    //miembros
+
     public List<Miembro> buscarMiembros(){
         EntityManager em = utils.BDUtils.getEntityManager();
         List<Miembro> miembros = em.createQuery("select m from Miembro m", Miembro.class)
@@ -61,13 +63,26 @@ public class RepoGeneral {
         return incidentes.stream().filter(i->i.getResuelto().equals(false)).collect(Collectors.toList());
     }
 
+    public Miembro buscarMiembro(int idBuscado){
+        EntityManager em = utils.BDUtils.getEntityManager();
+        List<Miembro> miembros = em.createQuery("select m from Miembro m where m.miembro_codigo = ?1", Miembro.class)
+                .setParameter(1,idBuscado).getResultList();
+        return miembros.stream().findFirst().get();
+    }
 
-
+    //comunidades
     public List<Comunidad> buscarComunidades() {
         EntityManager em = utils.BDUtils.getEntityManager();
         List<Comunidad> comunidades = em.createQuery("select c from Comunidad c", Comunidad.class)
                 .getResultList();;
         return comunidades;
+    }
+
+    public Comunidad buscarComunidad(int idBuscado){
+        EntityManager em = utils.BDUtils.getEntityManager();
+        List<Comunidad> comunidades = em.createQuery("select c from Comunidad c where c.comunidad_codigo = ?1", Comunidad.class)
+                .setParameter(1,idBuscado).getResultList();
+        return comunidades.stream().findFirst().get();
     }
 
 
