@@ -15,6 +15,8 @@ public abstract class GradoConfianza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int gradoConfianza_codigo;
 
+    @OneToOne(mappedBy = "gradoConfianza")
+    private Miembro miembro;
     public double getPuntaje() {
         return puntaje;
     }

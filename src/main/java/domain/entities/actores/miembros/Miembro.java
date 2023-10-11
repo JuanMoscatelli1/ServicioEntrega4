@@ -116,7 +116,7 @@ public class Miembro {
         this.gradoConfianza = gradoConfianza;
     }
 
-    @OneToOne(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "gradoConfianza_codigo", referencedColumnName = "gradoConfianza_codigo")
     private GradoConfianza gradoConfianza;
 

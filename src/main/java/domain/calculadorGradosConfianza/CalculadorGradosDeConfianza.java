@@ -27,7 +27,7 @@ public class CalculadorGradosDeConfianza {
         miembros.forEach(this::calcularPuntaje);
         comunidades.forEach(this::calcularPuntajeComunidad);
         RepoGeneral.getInstance().persistirMiembros(miembros);
-        RepoGeneral.getInstance().persistirComunidades(comunidades);
+        //RepoGeneral.getInstance().persistirComunidades(comunidades);
     }
 
     private void calcularPuntajeComunidad(Comunidad comunidad) {

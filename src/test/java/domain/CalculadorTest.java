@@ -8,6 +8,7 @@ import domain.entities.incidentes.IncidenteMiembro;
 import domain.repositorios.RepoGeneral;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
@@ -17,14 +18,14 @@ import java.util.List;
 
 public class CalculadorTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
-    private CalculadorGradosDeConfianza calculadorGradosDeConfianza = new CalculadorGradosDeConfianza();
+    private static CalculadorGradosDeConfianza calculadorGradosDeConfianza = new CalculadorGradosDeConfianza();
     private EntityManager em = utils.BDUtils.getEntityManager();
 
-    @Before
-    public void ejecutarCalculadora(){
+    @BeforeClass
+    public static void ejecutarCalculadora(){
         calculadorGradosDeConfianza.execute();
     }
-    /*
+
     @Test
     public void TestMiembro1(){
 
@@ -32,7 +33,7 @@ public class CalculadorTest extends AbstractPersistenceTest implements WithGloba
                 .setParameter(1,"Perez").getResultList();
 
         Assert.assertEquals(5.5,miembros.stream().findFirst().get().getGradoConfianza().getPuntaje(),0.1);
-    }*/
+    }
 
     @Test
     public void TestMiembro2(){

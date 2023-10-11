@@ -1,5 +1,6 @@
 package domain.repositorios;
 
+import domain.calculadorGradosConfianza.gradosConfianza.GradoConfianza;
 import domain.entities.actores.Comunidad;
 import domain.entities.actores.miembros.Miembro;
 import domain.entities.actores.miembros.MiembroPorComunidad;
@@ -77,8 +78,11 @@ public class RepoGeneral {
         utils.BDUtils.comenzarTransaccion(em);
 
         for (Miembro miembro : miembros){
-            em.merge(miembro.getGradoConfianza());
-            em.merge(miembro);
+            GradoConfianza gradoConfianzaActualizado = miembro.getGradoConfianza(); // Obtén la instancia actualizada de GradoConfianza
+            miembro.setGradoConfianza(null); // Desvincula temporalmente la relación
+            em.merge(miembro); // Realiza merge en el Miembro sin la relación
+            miembro.setGradoConfianza(gradoConfianzaActualizado); // Asocia la instancia actualizada de GradoConfianza
+            em.merge(miembro); // Realiza merge nuevamente en el Miembro
         }
 
         utils.BDUtils.commit(em);
