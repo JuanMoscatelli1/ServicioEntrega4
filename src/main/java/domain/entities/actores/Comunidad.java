@@ -16,9 +16,13 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 public class Comunidad {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int comunidad_codigo;
+    public int getComunidad_codigo() {
+        return comunidad_codigo;
+    }
 
 
     public List<MiembroPorComunidad> getMiembros() {
