@@ -1,13 +1,12 @@
 package domain;
 
-import domain.handlers.GetMiembroHandler;
+import domain.handlers.GetComunidadesHandler;
+import domain.handlers.GetMiembrosHandler;
 import io.javalin.Javalin;
 import io.javalin.openapi.plugin.OpenApiConfiguration;
 import io.javalin.openapi.plugin.OpenApiPlugin;
 import io.javalin.openapi.plugin.swagger.SwaggerConfiguration;
 import io.javalin.openapi.plugin.swagger.SwaggerPlugin;
-import io.javalin.openapi.plugin.redoc.ReDocConfiguration;
-import io.javalin.openapi.plugin.redoc.ReDocPlugin;
 
 public class Aplication {
     public static void main(String[] args) {
@@ -18,6 +17,7 @@ public class Aplication {
                 .get("/", ctx -> ctx.result("Hello World"))
                 .start(4567);
         System.out.println("Check out Swagger UI docs at http://localhost:4567/swagger");
-        app.get("api/miembros",new GetMiembroHandler());
+        app.get("api/miembros",new GetMiembrosHandler());
+        app.get("api/comunidades",new GetComunidadesHandler());
     }
 }

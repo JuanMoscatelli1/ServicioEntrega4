@@ -11,11 +11,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetMiembroHandler implements Handler {
+public class GetMiembrosHandler implements Handler {
     @OpenApi(
             summary = "Obtener los miembros Actualizados",
+            operationId = "ObtenerMiembros",
             path = "/api/miembros",
-            methods = {HttpMethod.GET},
+            methods = HttpMethod.GET,
             tags = {"Miembros"},
             responses = {
                     @OpenApiResponse(status = "200", content = @OpenApiContent(from = MiembroRespuesta[].class)),
