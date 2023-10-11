@@ -7,13 +7,13 @@ import java.util.List;
 public class ComunidadRespuesta {
 
     private Integer comunidad_codigo;
-    private Double puntaje;
+    //private Double puntaje;
     private List<Integer> miembros;
 
     public ComunidadRespuesta(Comunidad comunidad){
         this.miembros=new ArrayList<>();
         this.comunidad_codigo=comunidad.getComunidad_codigo();
-        this.puntaje=comunidad.getPuntaje();
+        //this.puntaje=comunidad.getPuntaje();
         this.obtenerIds(comunidad);
     }
     private void obtenerIds(Comunidad comunidad){
@@ -26,9 +26,9 @@ public class ComunidadRespuesta {
     public int getComunidad_codigo() {
         return comunidad_codigo;
     }
-    public double getPuntaje() {
+    /*public double getPuntaje() {
         return puntaje;
-    }
+    }*/
     public List<Integer> getMiembros() {
         return miembros;
     }

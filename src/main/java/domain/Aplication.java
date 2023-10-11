@@ -21,7 +21,7 @@ public class Aplication {
         System.out.println("Check out Swagger UI docs at http://localhost:4567/swagger");
         app.get("api/miembros",new GetMiembrosHandler());
         app.get("api/comunidades",new GetComunidadesHandler());
-        app.get("api/miembros/{Id}",new GetMiembroHandler());
-        app.get("api/comunidades/{Id}",new GetComunidadHandler());
+        app.get("api/miembros/{id}",new GetMiembroHandler());
+        app.get("api/comunidades/{id}",new GetComunidadHandler());
     }
 }

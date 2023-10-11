@@ -17,7 +17,7 @@ import java.util.List;
 public class GetComunidadesHandler implements Handler {
     @OpenApi(
             summary = "Obtener las comunidades Actualizados",
-            operationId = "ObetenerComunidades",
+            operationId = "ObetenerTodasLasComunidades",
             path = "/api/comunidades",
             methods = HttpMethod.GET,
             tags = {"Comunidades"},

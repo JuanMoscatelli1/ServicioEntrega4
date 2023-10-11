@@ -13,8 +13,8 @@ import java.util.Optional;
 public class GetComunidadHandler implements Handler {
     @OpenApi(
             summary = "Obtener Comunidad segun ID",
-            operationId = "ObetenerComunidadId",
-            path = "/api/comunidades/{Id}",
+            operationId = "ObetenerComunidadSegunId",
+            path = "/api/comunidades/{id}",
             methods = HttpMethod.GET,
             tags = {"Comunidades"},
             pathParams = @OpenApiParam(name = "id", description = "ID comunidad a buscar", required = true, type = Integer.class),

@@ -12,8 +12,8 @@ import org.jetbrains.annotations.NotNull;
 public class GetMiembroHandler implements Handler {
     @OpenApi(
             summary = "Obtener Miembro segun ID",
-            operationId = "ObetenerMiembroId",
-            path = "/api/miembros/{Id}",
+            operationId = "ObetenerMiembroSegunId",
+            path = "/api/miembros/{id}",
             methods = HttpMethod.GET,
             tags = {"Miembros"},
             pathParams = @OpenApiParam(name = "id", description = "ID miembro a buscar", required = true, type = Integer.class),
