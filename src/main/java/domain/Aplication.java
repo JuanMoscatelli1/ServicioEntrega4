@@ -1,6 +1,8 @@
 package domain;
 
+import domain.handlers.GetComunidadHandler;
 import domain.handlers.GetComunidadesHandler;
+import domain.handlers.GetMiembroHandler;
 import domain.handlers.GetMiembrosHandler;
 import io.javalin.Javalin;
 import io.javalin.openapi.plugin.OpenApiConfiguration;
@@ -19,5 +21,7 @@ public class Aplication {
         System.out.println("Check out Swagger UI docs at http://localhost:4567/swagger");
         app.get("api/miembros",new GetMiembrosHandler());
         app.get("api/comunidades",new GetComunidadesHandler());
+        app.get("api/miembros/{Id}",new GetMiembroHandler());
+        app.get("api/comunidades/{Id}",new GetComunidadHandler());
     }
 }
