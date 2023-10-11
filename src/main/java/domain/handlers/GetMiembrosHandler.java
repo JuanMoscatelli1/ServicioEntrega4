@@ -14,7 +14,7 @@ import java.util.List;
 public class GetMiembrosHandler implements Handler {
     @OpenApi(
             summary = "Obtener los miembros Actualizados",
-            operationId = "ObtenerTodosLosMiembros",
+            operationId = "ObtenerMiembros",
             path = "/api/miembros",
             methods = HttpMethod.GET,
             tags = {"Miembros"},

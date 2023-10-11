@@ -67,6 +67,7 @@ public class RepoGeneral {
         EntityManager em = utils.BDUtils.getEntityManager();
         List<Miembro> miembros = em.createQuery("select m from Miembro m where m.miembro_codigo = ?1", Miembro.class)
                 .setParameter(1,idBuscado).getResultList();
+        if(miembros.isEmpty()) {return new Miembro(-1);}
         return miembros.stream().findFirst().get();
     }
 
@@ -82,6 +83,7 @@ public class RepoGeneral {
         EntityManager em = utils.BDUtils.getEntityManager();
         List<Comunidad> comunidades = em.createQuery("select c from Comunidad c where c.comunidad_codigo = ?1", Comunidad.class)
                 .setParameter(1,idBuscado).getResultList();
+        if(comunidades.isEmpty()){return new Comunidad(-1);}
         return comunidades.stream().findFirst().get();
     }
 

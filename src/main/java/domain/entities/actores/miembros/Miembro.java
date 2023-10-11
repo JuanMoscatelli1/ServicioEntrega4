@@ -139,6 +139,9 @@ public class Miembro {
     public Miembro() {
 
     }
+    public Miembro(Integer id){
+        this.miembro_codigo = id;
+    }
 
     public void actualizarPuntaje(double puntaje){
         gradoConfianza.actualizar(this,puntaje);

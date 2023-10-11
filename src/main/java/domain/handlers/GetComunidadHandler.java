@@ -1,15 +1,19 @@
 package domain.handlers;
 
+import domain.entities.actores.Comunidad;
 import domain.entities.respuestas.ComunidadRespuesta;
+import domain.repositorios.RepoGeneral;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import io.javalin.openapi.*;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Optional;
+
 public class GetComunidadHandler implements Handler {
     @OpenApi(
             summary = "Obtener Comunidad segun ID",
-            operationId = "ObetenerComunidadSegunId",
+            operationId = "ObetenerComunidadId",
             path = "/api/comunidades/{Id}",
             methods = HttpMethod.GET,
             tags = {"Comunidades"},
@@ -21,7 +25,12 @@ public class GetComunidadHandler implements Handler {
     )
     @Override
     public void handle(@NotNull Context context) throws Exception {
-
-
+        Integer idBuscado = context.pathParamAsClass("id", Integer.class).get();
+        ComunidadRespuesta comunidadRespuesta = new ComunidadRespuesta(RepoGeneral.getInstance().buscarComunidad(idBuscado));
+        if(comunidadRespuesta.getComunidad_codigo() == -1 ){
+            context.status(404);
+        }else{
+            context.status(202).json(comunidadRespuesta);
+        }
     }
 }

@@ -68,5 +68,9 @@ public class Comunidad {
 
         this.setPuntaje( average - (miembros.stream().filter(m -> m.esGrado(new ConReservas())).count() *0.2));
     }
+    public Comunidad(Integer id){
+        this.comunidad_codigo=id;
+    }
+    public Comunidad(){}
 
 }
